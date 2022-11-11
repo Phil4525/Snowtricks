@@ -1,0 +1,57 @@
+/* offset html anchor */
+:target:before {
+    content: "";
+    display: block;
+    height: 56px;
+    margin: -56px 0 0;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.logo {
+    width: 14rem;
+}
+
+.nav-link {
+    color: black;
+}
+
+.navbar {
+    transition: all 0.25s;
+}
+
+/* .navbar-scrolled {
+    background-color: white;
+} */
+
+.offset {
+    padding-top: 56px;
+}
+
+.hero {
+    /* height: calc(100vh - 56px); */
+    height: 100vh;
+    background-image: url("../img/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+    background-position: 25% 0;
+    background-attachment: fixed;
+}
+
+.herobtn {
+    translate: -22px;
+}
