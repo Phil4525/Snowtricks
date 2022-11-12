@@ -8,7 +8,7 @@ Trick
   <div class="container">
     <div class="mb-4 position-relative">
       <img class="w-100 rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." />
-      <h1 class="position-absolute bottom-0 start-50 translate-middle text-uppercase fs-1">Trick title</h1>
+      <h1 class="position-absolute bottom-0 start-50 translate-middle text-uppercase fs-1">{{ trick.name }}</h1>
       <div class="position-absolute top-0 end-0 py-3">
         <a href="" class="text-decoration-none fa-sharp fa-solid fa-pen"></a>
         <a href="" class="text-decoration-none fa-solid fa-trash-can mx-3"></a>
@@ -118,21 +118,13 @@ Trick
           <span class="fw-bold">username</span>
         </div>
         <div>
-          <p class="text-muted fst-italic">publié le ...</p>
-          <p class="text-muted fst-italic">mis à jour le /date/ </p>
+          <p class="text-muted fst-italic">publié le {{ trick.createdAt|date('d/m/Y') }}</p>
+          {% if trick.modifiedAt %}
+          <p class="text-muted fst-italic">mis à jour le {{ trick.modifiedAt|date('d/m/Y') }} </p>
+          {% endif %}
         </div>
         <a class="badge bg-secondary text-decoration-none mb-3" href="#!">Groupe</a>
-        <p>Suspendisse fermentum efficitur massa, eget ullamcorper lectus dictum at. Vestibulum vestibulum euismod
-          tincidunt. Donec et nisi a turpis tincidunt iaculis. In finibus massa eu neque ultrices vulputate. Vivamus
-          maximus, tellus pulvinar ornare facilisis, dolor velit sollicitudin tellus, id sagittis ex eros tristique
-          diam. Sed at justo ac dolor sollicitudin pulvinar vel ut augue. Morbi sed sapien lacinia, iaculis elit sit
-          amet, viverra mauris. Nam nec tortor rutrum, tristique mauris in, rhoncus quam. Vivamus varius metus vel est
-          dignissim cursus. Aenean aliquam massa vel urna tempor tempus. Vestibulum vitae felis ac odio fringilla
-          posuere. Duis ullamcorper diam id viverra cursus. Phasellus in lectus varius, hendrerit lorem imperdiet,
-          interdum mi. Aliquam bibendum quis est a mattis. Integer in lobortis nisi, quis elementum nisl. Vestibulum
-          feugiat elementum est, at bibendum sapien gravida in. Praesent non malesuada leo. Aenean mollis lacus sit amet
-          purus porttitor bibendum. Suspendisse vel consequat nisi. Aliquam placerat massa sed ligula pulvinar varius
-          aliquam et nisl. Cras eget felis turpis. Aliquam non porta dolor.</p>
+        <p>{{ trick.description }}</p>
       </div>
     </section>
     <!-- Comments section -->

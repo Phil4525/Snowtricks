@@ -21,13 +21,13 @@ Home
     <div class="container" id="tricks">
       <div class="mb-4">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mb-4">
-          {% for i in 1..15 %}
+          {% for trick in tricks %}
           <div class="col">
             <div class="card">
               <img class="img-fluid" src="https://dummyimage.com/388x258/dee1e6/697379.jpg" alt="..." />
               <div class="card-body d-flex justify-content-between p-2">
-                <a class="text-decoration-none text-dark" href="{{ path('app_trick') }}">
-                  <h5 class="card-title fs-6 text-uppercase">Trick title</h5>
+                <a class="text-decoration-none text-dark" href="{{ path('app_trick', {id:trick.id}) }}">
+                  <h5 class="card-title fs-6 text-uppercase">{{ trick.name }}</h5>
                 </a>
                 <div>
                   <a href="" class="text-decoration-none fa-sharp fa-solid fa-pen"></a>
