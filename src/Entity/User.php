@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -21,6 +23,17 @@ class User
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $avatar_url = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Trick::class)]
+    private Collection $tricks;
+
+    public function __construct()
+    {
+        $this->tricks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,48 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getAvatarUrl(): ?string
+    {
+        return $this->avatar_url;
+    }
+
+    public function setAvatarUrl(string $avatar_url): self
+    {
+        $this->avatar_url = $avatar_url;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Trick>
+     */
+    public function getTricks(): Collection
+    {
+        return $this->tricks;
+    }
+
+    public function addTrick(Trick $trick): self
+    {
+        if (!$this->tricks->contains($trick)) {
+            $this->tricks->add($trick);
+            $trick->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrick(Trick $trick): self
+    {
+        if ($this->tricks->removeElement($trick)) {
+            // set the owning side to null (unless already changed)
+            if ($trick->getUser() === $this) {
+                $trick->setUser(null);
+            }
+        }
 
         return $this;
     }
